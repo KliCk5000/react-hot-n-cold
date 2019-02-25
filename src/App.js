@@ -9,7 +9,25 @@ import Results from './Components/Results';
 
 class App extends Component {
   state = {
-    previousGuesses: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,],
+    gameSettings: {
+      minNumber: 1,
+      maxNumber: 20,
+    },
+    previousGuesses: [],
+  };
+
+  handleAddGuess = (guessNumber) => {
+    this.setState((prevState) => {
+      return {
+        previousGuesses: [
+          ...prevState.previousGuesses,
+          {
+            guessNumber: guessNumber,
+            id: (prevState.previousGuesses.length += 1),
+          },
+        ],
+      };
+    });
   };
 
   render() {
@@ -19,9 +37,9 @@ class App extends Component {
           <Title />
         </div>
         <div className="game box">
-          <Header />
-          <GuessInput />
-          <Results previousGuesses={this.state.previousGuesses}/>
+          <Header gameSettings={this.state.gameSettings} />
+          <GuessInput gameSettings={this.state.gameSettings} addGuess={this.handleAddGuess} />
+          <Results previousGuesses={this.state.previousGuesses} />
         </div>
       </div>
     );

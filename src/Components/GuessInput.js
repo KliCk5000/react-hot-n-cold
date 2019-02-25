@@ -11,17 +11,21 @@ class GuessInput extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addPlayer(this.state.value);
+    this.props.addGuess(this.state.value);
     this.setState({ value: '' });
   };
 
   render() {
+    const {minNumber, maxNumber} = this.props.gameSettings;
+
     return (
-      <div className="field has-addons">
+      <form className="field has-addons" onSubmit={this.handleSubmit}>
         <div className="control is-expanded">
           <input
             className="input is-info is-medium"
-            type="text"
+            type="number"
+            min={minNumber}
+            max={maxNumber}
             value={this.state.value}
             onChange={this.handleValueChange}
             placeholder="Enter your guess"
@@ -34,7 +38,7 @@ class GuessInput extends Component {
             value="Guess"
           />
         </div>
-      </div>
+      </form>
     );
   }
 }

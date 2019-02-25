@@ -2,9 +2,9 @@ import React from 'react';
 import './PreviousGuesses.css';
 
 const PreviousGuesses = (props) => {
-    const displayList = props.previousGuesses.map((guess, index) => (
-      <span className="tag is-link is-medium" key={index}>
-        {guess}
+    const displayList = props.previousGuesses.map((guess) => (
+      <span className="tag is-link is-medium" key={guess.id}>
+        {guess.guessNumber}
       </span>
     ));
 
