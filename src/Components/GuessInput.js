@@ -16,30 +16,33 @@ class GuessInput extends Component {
   };
 
   render() {
-    const {minNumber, maxNumber} = this.props.gameSettings;
-
-    return (
-      <form className="field has-addons" onSubmit={this.handleSubmit}>
-        <div className="control is-expanded">
-          <input
-            className="input is-info is-medium"
-            type="number"
-            min={minNumber}
-            max={maxNumber}
-            value={this.state.value}
-            onChange={this.handleValueChange}
-            placeholder="Enter your guess"
-          />
-        </div>
-        <div className="control">
-          <input
-            className="button is-medium is-primary"
-            type="submit"
-            value="Guess"
-          />
-        </div>
-      </form>
-    );
+    const { minNumber, maxNumber } = this.props.gameSettings;
+    if (this.props.gameIsRunning) {
+      return (
+        <form className="field has-addons" onSubmit={this.handleSubmit}>
+          <div className="control is-expanded">
+            <input
+              className="input is-info is-medium"
+              type="number"
+              min={minNumber}
+              max={maxNumber}
+              value={this.state.value}
+              onChange={this.handleValueChange}
+              placeholder="Enter your guess"
+            />
+          </div>
+          <div className="control">
+            <input
+              className="button is-medium is-primary"
+              type="submit"
+              value="Guess"
+            />
+          </div>
+        </form>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 
